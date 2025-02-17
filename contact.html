@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="icon" type="png" href="Pinterest-logo.png">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Miniver&family=Poppins:wght@400;500;600;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        :root {
+            --background-color: #faf4f5; 
+            --text-color: #000;
+            --section-bg: #ffffff;
+        }
+
+        body.dark-mode {
+            --background-color: #121212;
+            --text-color: #eee;
+            --section-bg: #1e1e1e;
+        }
+
+        body {
+            background: var(--background-color);
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .contact-section {
+            background: var(--section-bg);
+            transition: background 0.3s;
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #d11507;
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* TOMBOL KEMBALI */
+        .back-button {
+            background: white;
+            color: #d11507;
+            border: none;
+            padding: 8px 16px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #ffff7a;
+        }
+
+        .contact-section {
+            padding: 50px 5%;
+            background: var(--section-bg);  
+            text-align: center;
+            transition: background 0.3s ease; 
+        }
+
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: "";
+            width: 100%;  
+            height: 4px;   
+            background: #d11507; 
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .section-content {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-info-list {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-form {
+            flex: 1;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 45px;
+            padding: 10px;
+            margin-bottom: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            transition: 0.3s ease;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 12px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            background: #ff0000;
+            border-radius: 30px;
+            border: 1px solid #ff0000;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: transparent;
+            color: #ff0000;
+        }
+
+        .message-sent {
+            display: none;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: green;
+            font-weight: bold;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* FOOTER */
+        .footer-section {
+            padding: 20px;
+            background: #d11507;
+            text-align: center;
+            color: white;
+        }
+
+        .social-link-list {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #ffff7a;
+        }
+
+        /* PRIVACY POLICY */
+        .policy-text {
+            margin-top: 10px;
+        }
+
+        .policy-link {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .policy-link:hover {
+            color: #ffff7a;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .contact-section .section-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+
+            .submit-button {
+                width: auto;
+                padding: 12px 24px;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease; 
+
+        }
+        .theme-toggle:focus {
+            outline: none; 
+        }
+
+        .theme-toggle i {
+            font-size: 20px;
+            color: var(--text-color); 
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1); 
+        }
+
+        body.dark-mode {
+            --background-color: #121212; 
+            --text-color: #eee; 
+        }
+        body.dark-mode .theme-toggle i.fa-sun {
+            display: block;
+        }
+        body.dark-mode .theme-toggle i.fa-moon {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" alt="Pinterest Logo">
+            <h1>Pinterest</h1>
+        </div>
+        <button class="back-button" onclick="window.location.href='index.html'">Back to Home</button>
+    </header>
+
+    <!-- SECTION KONTAK -->
+    <main>
+        <section class="contact-section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="section-content">
+                <ul class="contact-info-list">
+                    <li class="contact-info">
+                        <i class="fa-solid fa-location-crosshairs"></i>
+                        <p>123 Campsite Avenue, Wilderness, CA 98765</p>
+                    </li>
+                    <li class="contact-info">
+                        <i class="fa-regular fa-envelope"></i>
+                        <p>info@Pinterestwebsite.com</p>
+                    </li>
+                    <li class="contact-info">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>(123) 456-78909</p>
+                    </li>
+                    <li class="contact-info">
+                        <i class="fa-solid fa-globe"></i>
+                        <p>www.Pinterestweb.com</p>
+                    </li>
+                </ul>
+                <form action="#" class="contact-form" onsubmit="showMessage(event)">
+                    <input type="text" placeholder="Your name" class="form-input" required>
+                    <input type="email" placeholder="Your email" class="form-input" required>
+                    <textarea placeholder="Your message" class="form-input" required></textarea>
+                    <button type="submit" class="submit-button">Submit</button>
+                    <p class="message-sent" id="message-sent">Message Sent!</p>
+                </form>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer-section">
+            <p class="copyright-text">© 2025 Pinterest Website</p>
+            <div class="social-link-list">
+                <a href="https://www.instagram.com/manusiapunyaa/?next=%2F&hl=en" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://github.com/ayudewanti14" class="social-link"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.youtube.com/@ayudewantisuci6208" class="social-link"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+            <p class="policy-text">
+                <a href="#" class="policy-link">Privacy Policy</a>
+            </p>
+        </footer>
+    </main>
+    <button class="theme-toggle">
+        <i class="fas fa-moon"></i> <i class="fas fa-sun" style="display: none;"></i>
+    </button>
+
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+        const moonIcon = document.querySelector('.theme-toggle .fa-moon');
+        const sunIcon = document.querySelector('.theme-toggle .fa-sun');
+
+    function updateIcons() {
+        if (body.classList.contains('dark-mode')) {
+            sunIcon.style.display = 'inline-block';
+            moonIcon.style.display = 'none';
+        } else {
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'inline-block';
+        }
+    }
+
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+
+    updateIcons(); 
+    });
+
+    const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+    updateIcons(); 
+    function showMessage(event) {
+        event.preventDefault(); 
+        
+        document.getElementById("message-sent").style.display = "block";
+
+        document.querySelector(".contact-form input[type='text']").value = "";
+        document.querySelector(".contact-form input[type='email']").value = "";
+        document.querySelector(".contact-form textarea").value = "";
+
+        setTimeout(() => {
+            document.getElementById("message-sent").style.display = "none";
+        }, 3000);
+    }
+</script>
+
+</body>
+</html>

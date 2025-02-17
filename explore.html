@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Pinterest</title>
+    <link rel="icon" type="png" href="Pinterest-logo.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Miniver&family=Poppins:wght@400;500;600;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+         :root {
+            --background-color: #faf4f5; 
+            --text-color: #000; 
+        }
+
+        body.dark-mode {
+            --background-color: #121212; 
+            --text-color: #eee; 
+        }
+
+        body {
+            background: var(--background-color);
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: #d11507;
+            color: white;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .header .logo img {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        /* EXPLORE SECTION */
+        .explore-section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 4px;
+            background: #d11507;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+
+        .explore-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .explore-item {
+            position: relative;
+            width: calc(33.333% - 20px);
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .explore-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: zoom-in;
+            transition: 0.3s ease;
+        }
+
+        .explore-item:hover .explore-image {
+            transform: scale(1.1);
+        }
+
+        /* TEXT ON IMAGE */
+        .image-text {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .explore-item:hover .image-text {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        /* BUTTON BACK TO HOME */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            background: #d11507;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: white;
+            color: #d11507;
+            border: 2px solid #d11507;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .explore-item {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .search-bar {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .explore-item {
+                width: 100%;
+            }
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease; 
+
+        }
+        .theme-toggle:focus {
+            outline: none; 
+        }
+
+        .theme-toggle i {
+            font-size: 20px;
+            color: var(--text-color); 
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1); 
+        }
+
+        body.dark-mode {
+            --background-color: #121212; 
+            --text-color: #eee; 
+        }
+        body.dark-mode .theme-toggle i.fa-sun {
+            display: block;
+        }
+        body.dark-mode .theme-toggle i.fa-moon {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">
+            <img src="Pinterest-logo.png" alt="Pinterest Logo">Pinterest
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+    </header>
+
+    <main>
+        <!-- EXPLORE SECTION -->
+        <section class="explore-section">
+            <h2 class="section-title">Explore</h2>
+            <ul class="explore-list">
+                <li class="explore-item">
+                    <img src="food.jpg" alt="Food" class="explore-image">
+                    <div class="image-text">Food</div>
+                </li>
+                <li class="explore-item">
+                    <img src="bp.jpg" alt="Blackpink" class="explore-image">
+                    <div class="image-text">Blackpink</div>
+                </li>
+                <li class="explore-item">
+                    <img src="film.jpg" alt="Film" class="explore-image">
+                    <div class="image-text">Film</div>
+                </li>
+                <li class="explore-item">
+                    <img src="fashion.jpg" alt="Fashion" class="explore-image">
+                    <div class="image-text">Fashion</div>
+                </li>
+                <li class="explore-item">
+                    <img src="art.jpg" alt="Art" class="explore-image">
+                    <div class="image-text">Art</div>
+                </li>
+                <li class="explore-item">
+                    <img src="sport.jpg" alt="Sport" class="explore-image">
+                    <div class="image-text">Sport</div>
+                </li>
+            </ul>
+
+            <a href="index.html" class="back-button">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </a>
+        </section>
+    </main>
+    <button class="theme-toggle">
+        <i class="fas fa-moon"></i> <i class="fas fa-sun" style="display: none;"></i>
+    </button>
+
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+        const moonIcon = document.querySelector('.theme-toggle .fa-moon');
+        const sunIcon = document.querySelector('.theme-toggle .fa-sun');
+
+    function updateIcons() {
+        if (body.classList.contains('dark-mode')) {
+            sunIcon.style.display = 'inline-block';
+            moonIcon.style.display = 'none';
+        } else {
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'inline-block';
+        }
+    }
+
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+
+    updateIcons(); 
+});
+
+    const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+    updateIcons(); 
+    </script>
+</body>
+</html>
